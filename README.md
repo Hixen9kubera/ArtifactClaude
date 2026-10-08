@@ -33,6 +33,7 @@ Dentro de `inventario-packing-lists/`:
 | `img/g*.jpg`, `img/q*.jpg` | Las mismas fotos a 256 px, para verlas en grande al dar clic. |
 | `packing_lists_procesados.xlsx` | Los 186 archivos de packing list que se leyeron y los 103 contenedores. |
 | `humo_pl.js` | Prueba sin navegador: `node humo_pl.js` debe terminar en `OK`. |
+| *(no está aquí)* `inventario_kubera_skus.xlsx` | El mismo inventario en Excel, con la foto de cada producto. Pesa 42 MB y por eso no se sube: se genera con `python catalogo_vivo.py excel_pl` y se comprueba solo contra `datos_pl.json`. |
 | `agregados/` | Lo que otras sesiones agregaron a los datos (precios para lo que no tenía, títulos propuestos). El generador lo vuelve a aplicar. |
 | `LEEME_agregados.md`, `precios_agregados.csv`, `titulos_propuestos.csv`, `sin_precio_todavia.csv` | El detalle de lo agregado el 7-oct por la sesión de Competencia de Eduardo. |
 
