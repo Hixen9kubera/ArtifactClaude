@@ -10,6 +10,10 @@ donde se hizo.
 
 Corte de los datos: **7 de octubre de 2026**. Es una foto, no se actualiza sola.
 
+## Agregado el 7-oct-2026 (sesión de Competencia de Eduardo)
+
+Precios de Mercado Libre para lo que no tenía (38 revisados a mano, 370 por banda de categoría sin revisar, 12 insumos con referencia que no se suma) y títulos propuestos por Gemini viendo la foto para 2,544 filas. Se agregó **directo a los datos publicados**: si se regenera con `pagina_pl.py`, se pierde. Detalle en [`inventario-packing-lists/LEEME_agregados.md`](inventario-packing-lists/LEEME_agregados.md).
+
 ## Qué hay aquí
 
 | Carpeta | Qué es |
