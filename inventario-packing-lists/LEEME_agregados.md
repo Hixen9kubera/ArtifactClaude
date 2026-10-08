@@ -2,6 +2,8 @@
 
 Lo agregó la sesión de Competencia de Eduardo (Claude) directo sobre los datos publicados (`datos_pl.json` y `datos_pl.js`). Esos datos los genera `fuente/scripts/pagina_pl.py`, así que **si se vuelve a correr el generador, lo agregado se pierde**: hay que volver a aplicarlo, o meterlo al generador. Todo lo agregado lleva `ag: "2026-10-07"`.
 
+> **Actualización (7-oct-2026, noche): ya no se pierde.** Lo agregado se sacó a un archivo aparte, `agregados/agregados_2026-10-07.json` (los campos nuevos de cada fila), y `pagina_pl.py` lo vuelve a aplicar cada vez: lee todo lo que haya en `<salida>/datos/agregados/*.json` y pone cada campo SOLO si la fila no lo tiene. Se comprobó regenerando: las 15,204 filas salen idénticas a las publicadas aquí. Para agregar más, basta dejar otro archivo con la misma forma en esa carpeta. Los cuatro cambios a la página también están ya en `fuente/scripts/plantilla_pl.html`.
+
 ## 1. Precios de Mercado Libre para lo que no tenía
 
 Hay filas sin precio de Mercado Libre porque la cotización de Eduardo solo cubría lo que viene en los packing lists de sus 104 contenedores. Además, los insumos se excluyen a propósito.

@@ -12,7 +12,7 @@ Corte de los datos: **7 de octubre de 2026**. Es una foto, no se actualiza sola.
 
 ## Agregado el 7-oct-2026 (sesión de Competencia de Eduardo)
 
-Precios de Mercado Libre para lo que no tenía (38 revisados a mano, 370 por banda de categoría sin revisar, 12 insumos con referencia que no se suma) y títulos propuestos por Gemini viendo la foto para 2,544 filas. Se agregó **directo a los datos publicados**: si se regenera con `pagina_pl.py`, se pierde. Detalle en [`inventario-packing-lists/LEEME_agregados.md`](inventario-packing-lists/LEEME_agregados.md).
+Precios de Mercado Libre para lo que no tenía (38 revisados a mano, 370 por banda de categoría sin revisar, 12 insumos con referencia que no se suma) y títulos propuestos por Gemini viendo la foto para 2,544 filas. Se agregó directo a los datos publicados y después se metió al generador: `pagina_pl.py` lo vuelve a aplicar desde `inventario-packing-lists/agregados/` (en la máquina, `datos/agregados/`), así que regenerar ya no lo pierde. Detalle en [`inventario-packing-lists/LEEME_agregados.md`](inventario-packing-lists/LEEME_agregados.md).
 
 ## Qué hay aquí
 
@@ -33,6 +33,8 @@ Dentro de `inventario-packing-lists/`:
 | `img/g*.jpg`, `img/q*.jpg` | Las mismas fotos a 256 px, para verlas en grande al dar clic. |
 | `packing_lists_procesados.xlsx` | Los 186 archivos de packing list que se leyeron y los 103 contenedores. |
 | `humo_pl.js` | Prueba sin navegador: `node humo_pl.js` debe terminar en `OK`. |
+| `agregados/` | Lo que otras sesiones agregaron a los datos (precios para lo que no tenía, títulos propuestos). El generador lo vuelve a aplicar. |
+| `LEEME_agregados.md`, `precios_agregados.csv`, `titulos_propuestos.csv`, `sin_precio_todavia.csv` | El detalle de lo agregado el 7-oct por la sesión de Competencia de Eduardo. |
 
 ## Cómo consultarlo
 
