@@ -8,7 +8,38 @@ donde se hizo.
 > proveedor de cada producto. Brandon decidió subirlo así el 7-oct-2026. Si eso cambia, hay que
 > pasar el repo a privado; borrar los archivos no los quita del historial.
 
-Corte de los datos: **7 de octubre de 2026**. Es una foto, no se actualiza sola.
+Corte de los datos: **7 de octubre de 2026** (piezas, salidas y Amazon). Los precios de Mercado Libre se
+actualizaron el **13 de octubre** (precios v3). Es una foto, no se actualiza sola.
+
+## Actualizado el 13-oct-2026: precios de Mercado Libre v3 (sesión de Competencia de Eduardo)
+
+El precio de Mercado Libre de casi todo salía de la «banda»: la media de los más vendidos de la categoría.
+Esa banda estaba inflada por las marcas de renombre (unos tenis genéricos a $720.97, cuando se venden a
+unos $250) y a veces era de una categoría equivocada. Competencia la rehízo sin marcas de renombre, con
+el ranking real de más vendidos cuando existe, con la categoría corregida y con los términos de búsqueda
+revisados; después revisó a mano las 596 filas de más valor. En la página es la clase **«mercado sin
+marcas (v3)»**.
+
+| | Antes (7-oct) | Ahora (13-oct) |
+|---|---|---|
+| Valor de lo que queda, a precio de Mercado Libre | $461.8 M | **$355.9 M** |
+| … del mismo producto, revisado o nuestro precio (no cambia) | $60.0 M | $60.0 M |
+| … banda de categoría → mercado sin marcas (v3), 12,525 filas | $387.4 M | $290.5 M |
+| … estimado por costo | $14.4 M | $5.4 M |
+| Valor de lo que queda, a precio de Amazon | $661.2 M | $634.6 M |
+
+- 3,334 filas siguen marcadas **para revisar** (filtro «ML: v3 para revisar») y 594 llevan precio
+  **revisado a mano** (filtro «ML: v3 revisado a mano»). El detalle de cada fila dice de dónde salió su
+  precio, el anterior y las marcas que se sacaron de su banda.
+- 482 filas no tuvieron ninguna fuente y quedan con su estimado por costo; 223 quedan sin precio.
+- **Amazon:** lo medido no cambia. Lo estimado sí: el estimado de Amazon de una fila es su precio de
+  Mercado Libre × lo que Amazon cobra de más, así que se volvió a calcular con el precio nuevo.
+- Dos filas de equipo profesional quedaron en unos $40,000 por pieza tras la revisión a mano
+  (`PL:A23BDB5E04`, un autorrefractómetro, y `PL:910A499684`, un equipo estético): pesan en el total y
+  conviene confirmarlas con quien conozca el producto.
+
+El paquete (`precios_catalogo_v3.json` y su LEEME) no está en este repo: vive en la máquina, en
+`datos/precios_v3/`, y `pagina_pl.py` lo aplica al final cada vez que regenera, después de los agregados.
 
 ## Agregado el 7-oct-2026 (sesión de Competencia de Eduardo)
 
@@ -51,9 +82,9 @@ Dentro de `inventario-packing-lists/`:
 - **Salió:** los movimientos hechos de Odoo de la bodega hacia afuera (no los pedidos registrados).
 - **Queda:** la resta. Un producto está SOLD OUT cuando salió todo lo que se compró.
 - **Valor:** piezas que quedan × el precio promedio (la media) de cada marketplace, por separado.
-  - *Mercado Libre:* mínimo, media y máximo del archivo de Eduardo (cotización por API del 6 y 7 de
-    octubre). La media es de las publicaciones del mismo producto o, si no las hay, de los más
-    vendidos de su categoría; la página dice cuál.
+  - *Mercado Libre:* del archivo de Eduardo (cotización por API del 6 y 7 de octubre), la media de las
+    publicaciones del mismo producto cuando las hay. Para lo demás, el precio de mercado sin marcas de
+    renombre (precios v3 del 13 de octubre). La página dice cuál es en cada fila.
   - *Amazon:* búsqueda por palabra clave, precio de la caja de compra, y solo las publicaciones que
     un juez (IA) marcó como el mismo producto. Lo que no se pudo medir se estima.
 
@@ -89,7 +120,8 @@ sí consultan sistemas, siempre en solo lectura, y están explicadas en `fuente/
 Lo aprendido al construirlo está en `fuente/CONOCIMIENTO.md`.
 
 **Lo que NO está en este repo**, y hace falta para regenerar los datos: los packing lists (3.3 GB),
-el volcado de movimientos de Odoo, el paquete de precios de Mercado Libre de Eduardo y las llaves.
+el volcado de movimientos de Odoo, los dos paquetes de precios de Mercado Libre de Eduardo (el del 7-oct y
+los precios v3) y las llaves.
 Están en la máquina donde se generó (`omnicanal/reportes/catalogo_vivo/datos/`).
 
 ### Publicar el cambio al artifact (desde Claude Code)
@@ -101,10 +133,11 @@ publish. Solo puede publicarlo la cuenta dueña del artifact, o alguien con perm
 
 ## Lo que hay que saber antes de fiarse de un número
 
-- El valor de Mercado Libre con la media sale más alto que con el precio «depurado» de Eduardo
-  (mediana o nuestro precio, con tope de 10 veces el FOB). La página muestra los dos.
-- La mayor parte del valor de Mercado Libre viene de la «banda de categoría», que no es el mismo
-  producto y no está calibrada.
+- El precio «depurado» de Eduardo del 7-oct (mediana o nuestro precio publicado, con tope de 10 veces el
+  FOB) se conserva al lado como referencia: la página muestra los dos totales.
+- La mayor parte del valor de Mercado Libre viene del precio «mercado sin marcas (v3)», que es de
+  productos como ese y no publicaciones del mismo producto; una de cada cuatro de esas filas sigue
+  marcada para revisar.
 - Siete contenedores sin número Kubera y el 105 no tienen validado de bodega: sus piezas cuentan
   completas como «queda» y falta confirmar si ya llegaron.
 - Los productos «sin SKU» son renglones de packing list a los que nadie les ha puesto SKU; se

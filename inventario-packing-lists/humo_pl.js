@@ -1,6 +1,6 @@
 // Prueba de humo SIN navegador de la página de packing lists: corre su script contra un DOM de mentiras.
 const fs = require("fs");
-const dir = __dirname + "/";
+const dir = "C:/Users/diaz2/OneDrive/Escritorio/omnicanal/reportes/catalogo_vivo/";
 const html = fs.readFileSync(dir + "pagina_pl.html", "utf8");
 const m = html.match(/<script>([\s\S]*?)<\/script>/);
 const els = {};
@@ -57,7 +57,7 @@ els.q.value = "sabana"; els.q._l.input.forEach(f => f.call(els.q));
 console.log("buscar «sabana» →", txt(els.total.innerHTML).slice(0, 200));
 els.limpiar._l.click.forEach(f => f.call(els.limpiar));
 console.log("sin filtros →", txt(els.total.innerHTML).slice(0, 120));
-for (const pre of ["c-f", "c-n", "c-r", "c-b", "c-e", "c-u"]) { cambia("f-pre", pre); console.log(`precio=${pre} ->`, txt(els.total.innerHTML).slice(0, 260)); const ids = [...els.libro.innerHTML.matchAll(/data-i="(\d+)"/g)].map(x => x[1]); for (const i of ids.slice(0, 20)) { clic({ i }); clic({ i }); } if (pre === "c-u") console.log("  fila:", txt(els.libro.innerHTML.split("</thead>")[1]).slice(0, 700)); }
+for (const pre of ["c-f", "c-n", "c-r", "c-k", "v3r", "v3m", "c-b", "c-e", "c-u"]) { cambia("f-pre", pre); console.log(`precio=${pre} ->`, txt(els.total.innerHTML).slice(0, 260)); const ids = [...els.libro.innerHTML.matchAll(/data-i="(\d+)"/g)].map(x => x[1]); for (const i of ids.slice(0, 20)) { clic({ i }); clic({ i }); } if (pre === "c-u") console.log("  fila:", txt(els.libro.innerHTML.split("</thead>")[1]).slice(0, 700)); }
 cambia("f-pre", "");
 els.copiar.textContent = ""; els.copiar._l.click.forEach(f => f.call(els.copiar));
 console.log("TSV:", els.copia.value.split(String.fromCharCode(10)).slice(0, 3).join(" || ").slice(0, 900));
